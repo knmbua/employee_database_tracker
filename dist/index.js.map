@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,QAAQ,EAAC,MAAM,eAAe,CAAC;AAGvC,QAAQ,EAAG,CAAC","sourcesContent":["import {showMenu} from './lib/menu.js';\r\n\r\n\r\nshowMenu ();"]}
