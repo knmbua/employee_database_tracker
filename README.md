@@ -33,7 +33,11 @@ The Employee Database Tracker is a command-line application that allows users to
 
 Step 1: Clone the Repository
 
-Clone the repository to your local machine then navigate to employee_db_tracker
+Clone the repository to your local machine then navigate to 'employee_db_tracker'
+To open app run 'npm run build' in your terminal
+
+### Video Walkthrough
+https://drive.google.com/file/d/1K4roav0SRTFzLU0o-tkMMQls_kE3pnd7/view
 
 ### Questions
 
