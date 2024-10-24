@@ -1,13 +1,23 @@
-\c employee_db_tracker;
+-- Insert initial data into the department table
+INSERT INTO department (name) VALUES
+('Engineering'),
+('Sales'),
+('Finance')
+ON CONFLICT DO NOTHING;
 
-INSERT INTO department (name) VALUES ('Engineering'), ('HR'), ('Sales');
-
+-- Insert initial data into the role table
 INSERT INTO role (title, salary, department_id) VALUES
 ('Software Engineer', 80000, 1),
-('HR Manager', 60000, 2),
-('Sales Representative', 50000, 3);
+('Sales Manager', 90000, 2),
+('Accountant', 70000, 3)
+ON CONFLICT DO NOTHING;
 
-INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES
+-- Insert initial data into the employee table
+INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES
 ('John', 'Doe', 1, NULL),
 ('Jane', 'Smith', 2, NULL),
-('Jim', 'Brown', 3, NULL);
+('Emily', 'Johnson', 3, NULL),
+('Michael', 'Brown', 1, 1),
+('Sarah', 'Davis', 2, 2),
+('David', 'Wilson', 3, 3)
+ON CONFLICT DO NOTHING;

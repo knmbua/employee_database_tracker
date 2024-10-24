@@ -1,29 +1,17 @@
 import inquirer from 'inquirer';
 import 'console.table';
-import { getAllDepartments, getAllRoles, getAllEmployees, createEmployee } from './query.js';
+import { getAllRoles, getAllEmployees, createEmployee } from './query.js';
 let showWelcome = false;
 export async function addEmployee() {
-    const departmentsArray = await getAllDepartments();
     const rolesArray = await getAllRoles();
-    const { department_id, role_id, first_name, last_name } = await inquirer.prompt([
-        {
-            message: 'Please select the department',
-            name: 'department_id',
-            type: 'list',
-            choices: departmentsArray.map((departmentObj) => {
-                return {
-                    name: departmentObj.name,
-                    value: departmentObj.id
-                };
-            })
-        },
+    const { role_id, first_name, last_name } = await inquirer.prompt([
         {
             message: 'Please select the role',
             name: 'role_id',
             type: 'list',
             choices: rolesArray.map((roleObj) => {
                 return {
-                    name: roleObj.title,
+                    name: `${roleObj.title} (${roleObj.department_name})`,
                     value: roleObj.id
                 };
             })
@@ -39,7 +27,9 @@ export async function addEmployee() {
             type: 'input'
         }
     ]);
-    await createEmployee(department_id, role_id, first_name, last_name);
+    await createEmployee(role_id, first_name, last_name);
+    console.log('Employee added successfully!');
+    await showAllEmployees(); // Display all employees after adding a new one
 }
 export async function showAllEmployees() {
     const employeeRowsArray = await getAllEmployees();
@@ -47,7 +37,7 @@ export async function showAllEmployees() {
 }
 export async function showMenu() {
     if (!showWelcome) {
-        console.log('Employee Management System -----\n');
+        console.log('\n ------ Welcome to the Employee Database Tracker! ------\n');
         showWelcome = true;
     }
     const { optionFunction } = await inquirer.prompt({
@@ -73,6 +63,9 @@ export async function showMenu() {
         await optionFunction();
         showMenu();
     }
+    else {
+        console.log('Goodbye!');
+        process.exit(0); // Terminate the process
+    }
 }
-showMenu();
 //# sourceMappingURL=menu.js.map

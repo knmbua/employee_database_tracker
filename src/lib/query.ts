@@ -48,13 +48,13 @@ export async function getAllEmployees() {
     return rows;
 }
 
-export async function createEmployee(department_id: number, role_id: number, first_name: string, last_name: string) {
+export async function createEmployee(role_id: number, first_name: string, last_name: string) {
     const sql = `
-    INSERT INTO employee (department_id, role_id, first_name, last_name)
-    VALUES ($1, $2, $3, $4)
+    INSERT INTO employee (role_id, first_name, last_name)
+    VALUES ($1, $2, $3)
     RETURNING *
     `;
-    const values = [department_id, role_id, first_name, last_name];
+    const values = [role_id, first_name, last_name];
     const { rows } = await client.query(sql, values);
     return rows[0];
 }
